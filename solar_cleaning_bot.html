@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <title>קלין טופ - תיאום ניקיון</title>
+  <style>
+    body { font-family: Arial, sans-serif; direction: rtl; background-color: #f0f0f0; padding: 20px; }
+    .chat-box { background: white; padding: 20px; max-width: 600px; margin: auto; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    .question, .response { margin-bottom: 20px; }
+    button { padding: 10px 15px; margin: 5px; font-size: 16px; cursor: pointer; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div class="chat-box">
+    <div id="step1" class="question">
+      <p>שלום, מדבר עדן מחברת קלין טופ, החברה הממונה על ניקיון הלוחות הסולאריים שבמוסדך.<br>
+      הגיע הזמן לנקות את הלוחות הסולאריים!<br>
+      נשמח להגיע לניקיון ביום ראשון <strong id="date-placeholder">18.5.25</strong>.</p>
+      <p>האם תרצה לבחור שעה או לתאם באופן טלפוני?</p>
+      <button onclick="chooseOption('time')">לבחור שעה</button>
+      <button onclick="chooseOption('phone')">תיאום טלפוני</button>
+    </div>
+
+    <div id="step2-time" class="response hidden">
+      <p>אנא בחר את השעה הרצויה:</p>
+      <button onclick="confirmTime('08:00')">08:00</button>
+      <button onclick="confirmTime('10:00')">10:00</button>
+      <button onclick="confirmTime('12:00')">12:00</button>
+    </div>
+
+    <div id="step2-phone" class="response hidden">
+      <p>לתיאום טלפוני, נא חייג ל: <a href="tel:0528744799">052-8744799</a></p>
+    </div>
+
+    <div id="documents" class="response hidden">
+      <p>אם תרצה לראות את המסמכים והאישורים הנדרשים תוכל לקבל אותם כאן:</p>
+      <a href="#" target="_blank">קישור להעלאת מסמכים</a>
+    </div>
+
+    <div id="final-message" class="response hidden">
+      <p>תודה רבה על שיתוף הפעולה, נתראה במועד שנקבע.</p>
+    </div>
+  </div>
+
+  <script>
+    function chooseOption(option) {
+      document.getElementById('step1').classList.add('hidden');
+      if (option === 'time') {
+        document.getElementById('step2-time').classList.remove('hidden');
+      } else {
+        document.getElementById('step2-phone').classList.remove('hidden');
+        document.getElementById('documents').classList.remove('hidden');
+      }
+    }
+
+    function confirmTime(time) {
+      alert('השעה שנבחרה: ' + time);
+      document.getElementById('step2-time').classList.add('hidden');
+      document.getElementById('documents').classList.remove('hidden');
+      document.getElementById('final-message').classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
