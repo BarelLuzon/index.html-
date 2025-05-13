@@ -1,66 +1,41 @@
-
 <!DOCTYPE html>
 <html lang="he">
 <head>
-  <meta charset="UTF-8">
-  <title>קלין טופ - תיאום ניקיון</title>
-  <style>
-    body { font-family: Arial, sans-serif; direction: rtl; background-color: #f0f0f0; padding: 20px; }
-    .chat-box { background: white; padding: 20px; max-width: 600px; margin: auto; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    .question, .response { margin-bottom: 20px; }
-    button { padding: 10px 15px; margin: 5px; font-size: 16px; cursor: pointer; }
-    .hidden { display: none; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>בוט ניקיון לוחות סולאריים</title>
+    <script>
+        function handleHourSelection(hour) {
+            alert("הלקוח בחר שעה: " + hour); // שליחה לך הודעת לוג על הבחירה
+            document.getElementById("response").innerHTML = 
+                "תודה רבה על שיתוף הפעולה, נתראה במועד שנקבע!";
+            document.getElementById("documentsLink").style.display = "none"; // הסתרת קישור למסמכים
+        }
+
+        function handlePhoneCoordination() {
+            alert("הלקוח בחר תיאום טלפוני"); // שליחה לך הודעת לוג על הבחירה
+            document.getElementById("response").innerHTML = 
+                "תודה רבה על שיתוף הפעולה, נשמח לשוחח טלפונית.";
+            document.getElementById("documentsLink").style.display = "none"; // הסתרת קישור למסמכים
+        }
+    </script>
 </head>
-<body>
-  <div class="chat-box">
-    <div id="step1" class="question">
-      <p>שלום, מדבר עדן מחברת קלין טופ, החברה הממונה על ניקיון הלוחות הסולאריים שבמוסדך.<br>
-      הגיע הזמן לנקות את הלוחות הסולאריים!<br>
-      נשמח להגיע לניקיון ביום ראשון <strong id="date-placeholder">18.5.25</strong>.</p>
-      <p>האם תרצה לבחור שעה או לתאם באופן טלפוני?</p>
-      <button onclick="chooseOption('time')">לבחור שעה</button>
-      <button onclick="chooseOption('phone')">תיאום טלפוני</button>
-    </div>
+<body dir="rtl">
+    <h1>שלום, מדבר עדן מחברת קלין טופ, החברה הממונה על ניקיון הלוחות הסולאריים שבמוסדך</h1>
+    <p>הגיע הזמן לנקות את הלוחות הסולאריים!</p>
+    <p>נשמח להגיע לניקיון ביום ראשון 18.5.25</p>
 
-    <div id="step2-time" class="response hidden">
-      <p>אנא בחר את השעה הרצויה:</p>
-      <button onclick="confirmTime('08:00')">08:00</button>
-      <button onclick="confirmTime('10:00')">10:00</button>
-      <button onclick="confirmTime('12:00')">12:00</button>
-    </div>
+    <h2>האם תרצה לבחור שעה או לתאם באופן טלפוני?</h2>
 
-    <div id="step2-phone" class="response hidden">
-      <p>לתיאום טלפוני, נא חייג ל: <a href="tel:0528744799">052-8744799</a></p>
-    </div>
+    <button onclick="handleHourSelection('08:00')">08:00</button>
+    <button onclick="handleHourSelection('10:00')">10:00</button>
+    <button onclick="handleHourSelection('12:00')">12:00</button>
+    <button onclick="handleHourSelection('14:00')">14:00</button>
+    <button onclick="handlePhoneCoordination()">תיאום טלפוני</button>
 
-    <div id="documents" class="response hidden">
-      <p>אם תרצה לראות את המסמכים והאישורים הנדרשים תוכל לקבל אותם כאן:</p>
-      <a href="#" target="_blank">קישור להעלאת מסמכים</a>
-    </div>
+    <h3>אם תרצה לראות את המסמכים והאישורים הנדרשים תוכל לקבל אותם כאן:</h3>
+    <a id="documentsLink" href="הכנס_כאן_קישור_להעלאת_מסמכים">קישור להעלאת מסמכים</a>
 
-    <div id="final-message" class="response hidden">
-      <p>תודה רבה על שיתוף הפעולה, נתראה במועד שנקבע.</p>
-    </div>
-  </div>
-
-  <script>
-    function chooseOption(option) {
-      document.getElementById('step1').classList.add('hidden');
-      if (option === 'time') {
-        document.getElementById('step2-time').classList.remove('hidden');
-      } else {
-        document.getElementById('step2-phone').classList.remove('hidden');
-        document.getElementById('documents').classList.remove('hidden');
-      }
-    }
-
-    function confirmTime(time) {
-      alert('השעה שנבחרה: ' + time);
-      document.getElementById('step2-time').classList.add('hidden');
-      document.getElementById('documents').classList.remove('hidden');
-      document.getElementById('final-message').classList.remove('hidden');
-    }
-  </script>
+    <div id="response"></div>
 </body>
 </html>
